@@ -1,3 +1,4 @@
+```mermaid
 graph TD
     %% === Style Definitions for a Dark Theme ===
     classDef client fill:#1d2d44,stroke:#3e5c76,color:#f0f6fc,stroke-width:2px;
@@ -79,3 +80,4 @@ graph TD
     class I grafana;
     class J otel;
     class K slack;
+```
