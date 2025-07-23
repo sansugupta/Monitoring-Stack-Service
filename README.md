@@ -1,83 +1,33 @@
 ```mermaid
-graph TD
-    %% === Style Definitions for a Dark Theme ===
-    classDef client fill:#1d2d44,stroke:#3e5c76,color:#f0f6fc,stroke-width:2px;
-    classDef ingress fill:#24a1c1,stroke:#0d1117,color:#fff,font-weight:bold;
-    classDef external fill:#333,stroke:#555,color:#f0f6fc;
+%%{init: {'theme':'dark', 'themeVariables': {'primaryColor': '#1e1e2e', 'primaryTextColor': '#cdd6f4', 'primaryBorderColor': '#89b4fa', 'lineColor': '#89b4fa', 'gridColor': '#45475a', 'c0': '#f38ba8', 'c1': '#fab387', 'c2': '#f9e2af', 'c3': '#a6e3a1', 'c4': '#94e2d5', 'c5': '#89b4fa', 'c6': '#cba6f7', 'c7': '#f2cdcd', 'activeTaskBkgColor': '#89b4fa', 'activeTaskBorderColor': '#74c7ec', 'gridColor': '#585b70', 'section0': '#f38ba8', 'section1': '#fab387', 'section2': '#a6e3a1', 'section3': '#89b4fa'}}}%%
+gantt
+    title 🚀 Observability Stack Implementation Roadmap
+    dateFormat X
+    axisFormat %s
     
-    classDef prometheus fill:#e6522c,stroke:#0d1117,color:#fff,font-weight:bold;
-    classDef loki fill:#fca311,stroke:#0d1117,color:#fff,font-weight:bold;
-    classDef grafana fill:#32cd32,stroke:#0d1117,color:#fff,font-weight:bold;
-    classDef alertmanager fill:#b22222,stroke:#0d1117,color:#fff,font-weight:bold;
-    classDef otel fill:#9370db,stroke:#0d1117,color:#fff,font-weight:bold;
-    classDef slack fill:#4a154b,stroke:#e0d2e1,color:#fff,font-weight:bold;
-
-    %% === Architecture Definition ===
-
-    subgraph "🌐 External World"
-        A["fa:fa-google Google AdX"]
-    end
-
-    subgraph "💻 Your EKS Cluster"
-        B["fa:fa-network-wired Traefik Ingress"]
-        
-        subgraph "Application Suite"
-            C{"fa:fa-server EKS Services & Pods"}
-            D1["fa:fa-cube po-bidder"]
-            D2["fa:fa-cube po-dev-bidder"]
-            D3["fa:fa-cube po-eventimpression"]
-            D4["fa:fa-calendar-alt CronJob: Daily Report"]
-            D5["fa:fa-calendar-alt CronJob: Monthly Report"]
-        end
-        
-        E(("fa:fa-database<br>Databases"))
-    end
-
-    subgraph "🚀 PROPOSED OBSERVABILITY STACK (in 'monitoring' namespace)"
-        subgraph "Data Collection & Processing"
-            J["fa:fa-sitemap OpenTelemetry<br>Collector"]
-            F["fa:fa-chart-line Prometheus<br>(Metrics)"]
-            G["fa:fa-file-alt Loki<br>(Logs)"]
-        end
-
-        subgraph "Visualization & Alerting"
-            I["fa:fa-chart-pie Grafana<br>(Dashboards)"]
-            H["fa:fa-bell Alertmanager"]
-            K["fa:fa-slack Slack Alerts"]
-        end
-    end
+    section 🏗️ Foundation Setup
+    Infrastructure Preparation     :done, foundation1, 0, 1
+    Kubernetes Namespace Config    :done, foundation2, 1, 2
+    RBAC & Security Setup         :done, foundation3, 2, 3
     
-    %% === Connections ===
-    A --> B
-    B --> C
-    C --> D1 & D2 & D3 & D4 & D5
-    D1 & D2 & D3 & D4 & D5 --> E
-
-    %% Data Flow into the Monitoring Stack
-    C -- "Pod & App Metrics" --> F
-    E -- "Database Metrics" --> F
-    C -- "Structured Logs" --> G
+    section 📊 Metrics Collection
+    Prometheus Server Deployment  :active, metrics1, 3, 5
+    Alertmanager Configuration    :active, metrics2, 4, 6
+    Service Discovery Setup       :metrics3, 5, 7
+    Custom Metrics Integration    :metrics4, 6, 8
+    Slack Alert Integration       :metrics5, 7, 8
     
-    %% Optional Tracing Flow (Dotted Line)
-    C -.->|Traces (Optional)| J
-    J -- "Exports Data" .-> F & G
-
-    %% Alerting Flow (Thick Line)
-    F ==>|Fires Alerts| H
-    H --> K
-
-    %% Visualization Flow
-    I -- "Queries Metrics" --> F
-    I -- "Queries Logs" --> G
-
-    %% === Apply Styles ===
-    class A external;
-    class B ingress;
-    class C,D1,D2,D3,D4,D5,E client;
-    class F prometheus;
-    class G loki;
-    class H alertmanager;
-    class I grafana;
-    class J otel;
-    class K slack;
+    section 📝 Logging Pipeline
+    Loki Stack Deployment        :logging1, 8, 10
+    Promtail Agent Configuration  :logging2, 9, 11
+    Log Parsing & Enrichment     :logging3, 10, 12
+    Log Retention Policies       :logging4, 11, 13
+    
+    section 🎨 Visualization & Delivery
+    Grafana Dashboard Setup       :viz1, 12, 15
+    Custom Application Dashboards :viz2, 13, 16
+    Alert Rule Fine-tuning        :viz3, 14, 17
+    Performance Testing           :viz4, 15, 17
+    Knowledge Transfer Session    :viz5, 16, 18
+    Documentation Handover        :viz6, 17, 18
 ```
