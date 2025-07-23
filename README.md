@@ -31,3 +31,5 @@ gantt
     Knowledge Transfer Session    :viz5, 16, 18
     Documentation Handover        :viz6, 17, 18
 ```
+
+<img width="788" height="354" alt="image" src="https://github.com/user-attachments/assets/a4987093-a37e-46b7-b7ab-0bf7a2158bbc" />
